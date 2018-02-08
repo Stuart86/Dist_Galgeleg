@@ -1,4 +1,4 @@
-package galgeleg;
+package galgeleg_server;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,6 +9,11 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 
+import javax.jws.WebService;
+
+
+
+@WebService(endpointInterface = "galgeleg_server.KontoI")
 public class Galgelogik {
   /** AHT afprøvning er muligeOrd synlig på pakkeniveau */
   ArrayList<String> muligeOrd = new ArrayList<String>();
@@ -78,7 +83,7 @@ public class Galgelogik {
   }
 
 
-  private void opdaterSynligtOrd() {
+  public void opdaterSynligtOrd() {
     synligtOrd = "";
     spilletErVundet = true;
     for (int n = 0; n < ordet.length(); n++) {

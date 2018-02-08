@@ -1,6 +1,8 @@
 package galgeleg;
 
-public class BenytGalgelogik {
+import galgeleg_server.Galgelogik;
+
+public class BenytGalgelegModServer {
 
   public static void main(String[] args) {
 

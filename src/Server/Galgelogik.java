@@ -1,4 +1,4 @@
-package galgeleg_server;
+package Server;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,14 +8,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
-
 import javax.jws.WebService;
+import BrugerAutorisation.Brugeradmin;
+import BrugerAutorisation.BrugeradminImplService;
 
-
-
-@WebService(endpointInterface = "galgeleg_server.KontoI")
+@WebService(endpointInterface = "Server.GalgelegInterface")
 public class Galgelogik {
   /** AHT afprøvning er muligeOrd synlig på pakkeniveau */
+	
+  ArrayList<String> klientOutput = new ArrayList<String>();
   ArrayList<String> muligeOrd = new ArrayList<String>();
   private String ordet;
   private ArrayList<String> brugteBogstaver = new ArrayList<String>();
@@ -25,8 +26,8 @@ public class Galgelogik {
   private boolean spilletErVundet;
   private boolean spilletErTabt;
 
-
-  public ArrayList<String> getBrugteBogstaver() {
+  public ArrayList<String> getBrugteBogstaver() 
+  {
     return brugteBogstaver;
   }
 
@@ -73,7 +74,8 @@ public class Galgelogik {
     nulstil();
   }
 
-  public void nulstil() {
+  public void nulstil() 
+  {
     brugteBogstaver.clear();
     antalForkerteBogstaver = 0;
     spilletErVundet = false;
@@ -81,7 +83,6 @@ public class Galgelogik {
     ordet = muligeOrd.get(new Random().nextInt(muligeOrd.size()));
     opdaterSynligtOrd();
   }
-
 
   public void opdaterSynligtOrd() {
     synligtOrd = "";
@@ -97,30 +98,40 @@ public class Galgelogik {
     }
   }
 
-  public void gætBogstav(String bogstav) {
-    if (bogstav.length() != 1) return;
+  public String gætBogstav(String bogstav) {
+	
+	klientOutput.clear();
+	  
+    if (bogstav.length() != 1) return klientOutput.toString();
     System.out.println("Der gættes på bogstavet: " + bogstav);
-    if (brugteBogstaver.contains(bogstav)) return;
-    if (spilletErVundet || spilletErTabt) return;
+    klientOutput.add("Der gættes på bogstavet: " + bogstav);
+    if (brugteBogstaver.contains(bogstav)) return klientOutput.toString();
+    if (spilletErVundet || spilletErTabt) return klientOutput.toString();
 
     brugteBogstaver.add(bogstav);
 
     if (ordet.contains(bogstav)) {
       sidsteBogstavVarKorrekt = true;
       System.out.println("Bogstavet var korrekt: " + bogstav);
+      klientOutput.add("Bogstavet var korrekt: " + bogstav);
+    
     } else {
       // Vi gættede på et bogstav der ikke var i ordet.
       sidsteBogstavVarKorrekt = false;
       System.out.println("Bogstavet var IKKE korrekt: " + bogstav);
+      klientOutput.add("Bogstavet var IKKE korrekt: " + bogstav);
       antalForkerteBogstaver = antalForkerteBogstaver + 1;
       if (antalForkerteBogstaver > 6) {
         spilletErTabt = true;
       }
     }
     opdaterSynligtOrd();
+    return klientOutput.toString();
   }
 
-  public void logStatus() {
+  public String logStatus() {
+	  
+	klientOutput.clear();
     System.out.println("---------- ");
     System.out.println("- ordet (skult) = " + ordet);
     System.out.println("- synligtOrd = " + synligtOrd);
@@ -129,6 +140,17 @@ public class Galgelogik {
     if (spilletErTabt) System.out.println("- SPILLET ER TABT");
     if (spilletErVundet) System.out.println("- SPILLET ER VUNDET");
     System.out.println("---------- ");
+    
+    klientOutput.add("---------- \n"); // klient output
+    klientOutput.add("- ordet (skult) = " + ordet + "\n"); // klient output
+    klientOutput.add("- synligtOrd = " + synligtOrd + "\n"); // klient output
+    klientOutput.add("- forkerteBogstaver = " + antalForkerteBogstaver + "\n"); // klient output
+    klientOutput.add("- brugteBogstaver = " + brugteBogstaver + "\n"); // klient output
+    if (spilletErTabt) klientOutput.add("- SPILLET ER TABT\n"); // klient output
+    if (spilletErVundet) klientOutput.add("- SPILLET ER VUDNET\n"); // klient output
+    klientOutput.add("--------------- \n");
+    
+	return klientOutput.toString();
   }
 
 
@@ -169,4 +191,20 @@ public class Galgelogik {
     System.out.println("muligeOrd = " + muligeOrd);
     nulstil();
   }
+	public boolean Brugergodkendelse(String Brugernavn, String Password)
+	{
+		Brugeradmin b = new BrugeradminImplService().getBrugeradminImplPort();
+	
+		try 
+		{
+			b.hentBruger(Brugernavn, Password);
+	        return true;
+	    } 
+		catch (Exception e) 
+		{
+	    	System.out.println("fejl");
+	        return false;
+	    }
+		
+	}
 }

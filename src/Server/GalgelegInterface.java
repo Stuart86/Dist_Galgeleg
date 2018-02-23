@@ -1,9 +1,10 @@
-package galgeleg_server;
+package Server;
+
 import java.util.ArrayList;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 @WebService
-public interface KontoI
+public interface GalgelegInterface
 {
 	@WebMethod ArrayList<String> getBrugteBogstaver();
 	@WebMethod String getSynligtOrd();
@@ -14,8 +15,9 @@ public interface KontoI
 	@WebMethod boolean erSpilletSlut();
 	@WebMethod void nulstil();
 	@WebMethod void opdaterSynligtOrd();
-	@WebMethod void gætBogstav(String bogstav);
-	@WebMethod void logStatus();
+	@WebMethod String gætBogstav(String bogstav);
+	@WebMethod String logStatus();
 	@WebMethod String hentUrl(String url);
 	@WebMethod void hentOrdFraDr();
+	@WebMethod boolean Brugergodkendelse(String Brugernavn, String Password);
 }

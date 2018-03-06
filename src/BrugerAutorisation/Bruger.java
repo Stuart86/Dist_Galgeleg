@@ -9,6 +9,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
+//test//
+
 /**
  * <p>Java class for bruger complex type.
  * 

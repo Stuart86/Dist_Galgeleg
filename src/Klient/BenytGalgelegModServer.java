@@ -6,7 +6,7 @@ import java.util.Scanner;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import Server.GalgelegInterface;
-
+//test//
 
 public class BenytGalgelegModServer 
 {

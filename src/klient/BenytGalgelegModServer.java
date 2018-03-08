@@ -1,17 +1,18 @@
-package Klient;
+package klient;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
-import Server.GalgelegInterface;
-//test//
+
+import server.GalgelegInterface;
+
 
 public class BenytGalgelegModServer 
 {
 	static GalgelegInterface GI;
-	
+
 	public static void main(String[] args) throws MalformedURLException 
 	{
 	
@@ -54,7 +55,7 @@ public class BenytGalgelegModServer
 	public static void ServerTilslut() throws MalformedURLException
 	{
 		URL url = new URL("http://ubuntu4.saluton.dk:9918/galgeleg?wsdl");
-		QName qname = new QName("http://Server/", "GalgelogikService");
+		QName qname = new QName("http://server/", "GalgelogikService");
 		Service service = Service.create(url, qname);
 		GI = service.getPort(GalgelegInterface.class);
 		System.out.println("Der er forbundet til serveren");

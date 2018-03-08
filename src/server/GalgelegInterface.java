@@ -1,4 +1,4 @@
-package Server;
+package server;
 
 import java.util.ArrayList;
 import javax.jws.WebMethod;

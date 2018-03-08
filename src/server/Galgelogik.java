@@ -1,18 +1,21 @@
-package Server;
+package server;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 import javax.jws.WebService;
-import BrugerAutorisation.Brugeradmin;
-import BrugerAutorisation.BrugeradminImplService;
 
-@WebService(endpointInterface = "Server.GalgelegInterface")
+import brugerautorisation.transport.rmi.Brugeradminklient;
+import brugerautorisationold.Brugeradmin;
+import brugerautorisationold.BrugeradminImplService;
+
+@WebService(endpointInterface = "server.GalgelegInterface")
 public class Galgelogik {
   /** AHT afprøvning er muligeOrd synlig på pakkeniveau */
 	
@@ -191,13 +194,15 @@ public class Galgelogik {
     System.out.println("muligeOrd = " + muligeOrd);
     nulstil();
   }
-	public boolean Brugergodkendelse(String Brugernavn, String Password)
+	public boolean Brugergodkendelse(String Brugernavn, String Password) throws RemoteException, Exception
 	{
-		Brugeradmin b = new BrugeradminImplService().getBrugeradminImplPort();
-	
+//		Brugeradmin b = new BrugeradminImplService().getBrugeradminImplPort();
+		
+		Brugeradminklient BAK = new Brugeradminklient();
+		
 		try 
 		{
-			b.hentBruger(Brugernavn, Password);
+			BAK.RMIforbindelse().hentBruger(Brugernavn, Password);
 	        return true;
 	    } 
 		catch (Exception e) 

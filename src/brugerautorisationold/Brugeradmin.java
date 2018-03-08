@@ -1,5 +1,5 @@
 
-package BrugerAutorisation;
+package brugerautorisationold;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;

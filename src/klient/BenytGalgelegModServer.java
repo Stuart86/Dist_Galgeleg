@@ -61,12 +61,13 @@ public class BenytGalgelegModServer
                 	{
                 		SpilIgen = false;
                 		System.out.println("Tak for spillet");
-                		break;
+                		
                 	}
                 	else
                 	{
                 		System.out.println("Forstår ikke inputtet, prøv venligst igen");
                 	}
+            		break;
             	}
             	
             }

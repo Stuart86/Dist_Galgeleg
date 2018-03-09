@@ -1,8 +1,8 @@
-package Server;
+package server;
 
 import javax.xml.ws.Endpoint;
 
-class Kontoserver 
+class GalgeServer 
 {
 	public static void main(String[] args)
 	{

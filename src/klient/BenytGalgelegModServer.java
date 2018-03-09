@@ -31,8 +31,11 @@ public class BenytGalgelegModServer
 		boolean SpilIgen = false;
 		Scanner Scanner = new Scanner(System.in);
 		
+		if(SpilIgen == false)
+		{
+			GI.hentOrdFraDr();
+		}
 		
-		GI.hentOrdFraDr();
 		while (GætForsøg)
         {
             System.out.println("Gæt et bogstav");
@@ -43,7 +46,28 @@ public class BenytGalgelegModServer
             if (GI.erSpilletSlut())
             {
             	GætForsøg = false;
-            	System.out.println("Vil du spille igen?\nSvar J/N");
+            	
+            	while(true)
+            	{
+            		System.out.println("Vil du spille igen?\nSvar j/n");
+                	Svar = Scanner.next();
+                	
+            		if(Svar.equals("j"))
+                	{
+                		SpilIgen = true;
+                		BegyndSpillet();
+                	}
+                	else if(Svar.equals("n"))
+                	{
+                		SpilIgen = false;
+                		System.out.println("Tak for spillet");
+                		break;
+                	}
+                	else
+                	{
+                		System.out.println("Forstår ikke inputtet, prøv venligst igen");
+                	}
+            	}
             	
             }
         }

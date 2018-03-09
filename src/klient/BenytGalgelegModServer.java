@@ -15,15 +15,56 @@ public class BenytGalgelegModServer
 
 	public static void main(String[] args) throws MalformedURLException 
 	{
-	
-		String mitGÃ¦t, Brugernavn, Password;
-		boolean PasswordForsÃ¸g = false;
-		boolean GÃ¦tForsÃ¸g = true;
-		Scanner Scanner = new Scanner(System.in);
+		boolean PasswordForsøg = false;
 		
 		ServerTilslut();
 		
-		while(!PasswordForsÃ¸g) 
+		PasswordForsøg = Login(PasswordForsøg);
+		
+		BegyndSpillet();
+	}
+		
+	public static void BegyndSpillet()
+	{
+		String mitGæt, Svar;
+		boolean GætForsøg = true;
+		boolean SpilIgen = false;
+		Scanner Scanner = new Scanner(System.in);
+		
+		
+		GI.hentOrdFraDr();
+		while (GætForsøg)
+        {
+            System.out.println("Gæt et bogstav");
+            mitGæt = Scanner.next();
+            System.out.println(GI.gætBogstav(mitGæt));
+            System.out.println(GI.logStatus());  
+            
+            if (GI.erSpilletSlut())
+            {
+            	GætForsøg = false;
+            	System.out.println("Vil du spille igen?\nSvar J/N");
+            	
+            }
+        }
+		
+	}
+	
+	public static void ServerTilslut() throws MalformedURLException
+	{
+		URL url = new URL("http://ubuntu4.saluton.dk:9918/galgeleg?wsdl");
+		QName qname = new QName("http://server/", "GalgelogikService");
+		Service service = Service.create(url, qname);
+		GI = service.getPort(GalgelegInterface.class);
+		System.out.println("Der er forbundet til serveren");
+	}
+	
+	public static boolean Login(boolean PasswordForsøg)
+	{
+		String Brugernavn, Password;
+		Scanner Scanner = new Scanner(System.in);
+		
+		while(!PasswordForsøg) 
 		{
             System.out.println("Indtast brugernavn:");
             Brugernavn = Scanner.nextLine();
@@ -32,32 +73,13 @@ public class BenytGalgelegModServer
             
             if(GI.Brugergodkendelse(Brugernavn, Password)) 
             {
-                System.out.println("Du er nu logged pÃ¥ med : " + Brugernavn + " og passwordet: " + Password);
-                PasswordForsÃ¸g = true;
+                System.out.println("Du er nu logged på med : " + Brugernavn + " og passwordet: " + Password);
+                PasswordForsøg = true;
             } else 
             {
-                System.out.println("Forkert brugernavn eller password\nPrÃ¸v igen!");
+                System.out.println("Forkert brugernavn eller password\nPrøv igen!");
             }
         }
-		
-		while (GÃ¦tForsÃ¸g)
-        {
-            System.out.println("GÃ¦t et bogstav");
-            mitGÃ¦t = Scanner.next();
-            System.out.println(GI.gÃ¦tBogstav(mitGÃ¦t));
-            System.out.println(GI.logStatus());  
-            
-            if (GI.erSpilletSlut()) GÃ¦tForsÃ¸g = false;
-        }
-		
- 
-	}
-	public static void ServerTilslut() throws MalformedURLException
-	{
-		URL url = new URL("http://ubuntu4.saluton.dk:9918/galgeleg?wsdl");
-		QName qname = new QName("http://server/", "GalgelogikService");
-		Service service = Service.create(url, qname);
-		GI = service.getPort(GalgelegInterface.class);
-		System.out.println("Der er forbundet til serveren");
+		return PasswordForsøg;
 	}
 }

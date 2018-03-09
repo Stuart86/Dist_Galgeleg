@@ -3,6 +3,7 @@ package server;
 import java.util.ArrayList;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
+
 @WebService
 public interface GalgelegInterface
 {
@@ -15,7 +16,7 @@ public interface GalgelegInterface
 	@WebMethod boolean erSpilletSlut();
 	@WebMethod void nulstil();
 	@WebMethod void opdaterSynligtOrd();
-	@WebMethod String gÃ¦tBogstav(String bogstav);
+	@WebMethod String gætBogstav(String bogstav);
 	@WebMethod String logStatus();
 	@WebMethod String hentUrl(String url);
 	@WebMethod void hentOrdFraDr();

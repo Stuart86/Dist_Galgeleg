@@ -19,7 +19,7 @@ public interface Brugeradmin extends java.rmi.Remote {
 	 * ï¿½ndrer en brugers adgangskode
 	 * @return et Bruger-objekt med alle data
 	 */
-	Bruger Ã¦ndrAdgangskode(String brugernavn, String glAdgangskode, String nyAdgangskode) throws java.rmi.RemoteException;
+	Bruger ÆndrAdgangskode(String brugernavn, String glAdgangskode, String nyAdgangskode) throws java.rmi.RemoteException;
 
 	/**
 	 * Sender en email til en bruger
@@ -29,7 +29,7 @@ public interface Brugeradmin extends java.rmi.Remote {
 	 * @throws java.rmi.RemoteException
 	 */
 	
-	void setEkstraFelt(String brugernavn, String adgangskode, String feltnavn, Object vÃ¦rdi) throws java.rmi.RemoteException;
+	void setEkstraFelt(String brugernavn, String adgangskode, String feltnavn, Object værdi) throws java.rmi.RemoteException;
 
 	/**
 	 * Aflï¿½ser et ekstra felt. Se setEkstraFelt

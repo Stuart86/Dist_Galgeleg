@@ -57,7 +57,7 @@ public interface Brugeradmin {
     @RequestWrapper(localName = "\u00e6ndrAdgangskode", targetNamespace = "http://soap.transport.brugerautorisation/", className = "BrugerAutorisation.\u00c6ndrAdgangskode")
     @ResponseWrapper(localName = "\u00e6ndrAdgangskodeResponse", targetNamespace = "http://soap.transport.brugerautorisation/", className = "BrugerAutorisation.\u00c6ndrAdgangskodeResponse")
     @Action(input = "http://soap.transport.brugerautorisation/Brugeradmin/\u00e6ndrAdgangskodeRequest", output = "http://soap.transport.brugerautorisation/Brugeradmin/\u00e6ndrAdgangskodeResponse")
-    public Bruger Ã¦ndrAdgangskode(
+    public Bruger ændrAdgangskode(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0,
         @WebParam(name = "arg1", targetNamespace = "")

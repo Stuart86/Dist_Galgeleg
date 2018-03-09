@@ -3,6 +3,7 @@ package server;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import javax.jws.WebService;
 import brugerautorisation.transport.rmi.Brugeradminklient;
 import brugerautorisationold.Brugeradmin;
 import brugerautorisationold.BrugeradminImplService;
+
 
 @WebService(endpointInterface = "server.GalgelegInterface")
 public class Galgelogik {
@@ -101,7 +103,7 @@ public class Galgelogik {
     }
   }
 
-  public String gÃ¦tBogstav(String bogstav) {
+  public String gætBogstav(String bogstav) {
 	
 	klientOutput.clear();
 	  
@@ -156,17 +158,42 @@ public class Galgelogik {
 	return klientOutput.toString();
   }
 
+  public static String hentUrl(String adresse) throws IOException 
+  {
+	  StringBuilder sb = null;
+	  
+	  try 
+	    {
+          URL url = new URL(adresse);
+          HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+          sb  = new StringBuilder();
+          conn.setRequestMethod("GET");
+          conn.setRequestProperty("Accept", "application/json");
+          
+          if (conn.getResponseCode() != 200) 
+          {
+              throw new RuntimeException("Mislykkes : HTTP fejl kode : "
+                      + conn.getResponseCode());
+          }
+          
+          InputStreamReader in = new InputStreamReader(conn.getInputStream());
+          BufferedReader br = new BufferedReader(in);
+          String output;
+          
+          while ((output = br.readLine()) != null) 
+          {
+              System.out.println(output);
+              sb.append(output + "\n");
+          }
+          conn.disconnect();
+          
+      } catch (Exception e) 
+	  {
+          System.out.println("Exception in NetClientGet:- " + e);
+      }
+	  
+	return sb.toString();
 
-  public static String hentUrl(String url) throws IOException {
-    System.out.println("Henter data fra " + url);
-    BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream()));
-    StringBuilder sb = new StringBuilder();
-    String linje = br.readLine();
-    while (linje != null) {
-      sb.append(linje + "\n");
-      linje = br.readLine();
-    }
-    return sb.toString();
   }
 
 
@@ -196,7 +223,6 @@ public class Galgelogik {
   }
 	public boolean Brugergodkendelse(String Brugernavn, String Password) throws RemoteException, Exception
 	{
-//		Brugeradmin b = new BrugeradminImplService().getBrugeradminImplPort();
 		
 		Brugeradminklient BAK = new Brugeradminklient();
 		

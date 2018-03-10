@@ -19,5 +19,5 @@ public interface GalgelegInterface
 	@WebMethod String gætBogstav(String bogstav);
 	@WebMethod String logStatus();
 	@WebMethod String hentUrl(String url);
-	@WebMethod void hentOrdFraDr();
+	@WebMethod void HentOrdFraDRTråd();
 }

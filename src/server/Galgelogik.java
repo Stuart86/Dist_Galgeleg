@@ -157,7 +157,7 @@ public class Galgelogik {
 	return klientOutput.toString();
   }
 
-  public static String hentUrl(String adresse) throws IOException 
+  public String hentUrl(String adresse) throws IOException 
   {
 	  StringBuilder sb = null;
 	  
@@ -220,5 +220,22 @@ public class Galgelogik {
     System.out.println("muligeOrd = " + muligeOrd);
     nulstil();
   }
+  
+  public void HentOrdFraDRTråd() 
+	{
+	    new Thread(new Runnable() 
+	    {
+	        public void run()
+	        {
+	        	try 
+	        	{
+					hentOrdFraDr();
+				} catch (Exception e) 
+	        	{
+					e.printStackTrace();
+				}
+	        }
+	    }).start();
+	}
 
 }

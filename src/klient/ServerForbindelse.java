@@ -16,7 +16,7 @@ public class ServerForbindelse
 	BrugerGodkendelseInterface BGI;
 	ServerLogin SL = new ServerLogin();
 	
-	public  void ServerTilslut1() throws RemoteException, Exception
+	public  void ServerTilslutGalgeLogik() throws RemoteException, Exception
 	{
 		URL url = new URL("http://ubuntu4.saluton.dk:9918/galgeleg?wsdl");
 		QName qname = new QName("http://server/", "GalgelogikService");
@@ -24,9 +24,9 @@ public class ServerForbindelse
 		GI = service.getPort(GalgelegInterface.class);
 		System.out.println("Der er forbundet til serveren");
 		
-		ServerTilslut2();
+		ServerTilslutBrugerLogin();
 	}
-	public  void ServerTilslut2() throws RemoteException, Exception
+	public  void ServerTilslutBrugerLogin() throws RemoteException, Exception
 	{
 		URL url = new URL("http://ubuntu4.saluton.dk:9918/brugergodkendelse?wsdl");
 		QName qname = new QName("http://server/", "BrugerGodkendelseRMIService");

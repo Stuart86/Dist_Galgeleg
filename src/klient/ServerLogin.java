@@ -8,7 +8,7 @@ public class ServerLogin
 {
 	boolean PasswordForsøg = false;
 	
-	public void Login(BrugerGodkendelseInterface bGI) throws RemoteException, Exception
+	public void Login(BrugerGodkendelseInterface BGI) throws RemoteException, Exception
 	{
 		String Brugernavn, Password;
 		Scanner Scanner = new Scanner(System.in);
@@ -20,7 +20,7 @@ public class ServerLogin
             System.out.println("Indtast kodeord:");
             Password = Scanner.nextLine();
             
-            if(bGI.Brugergodkendelse(Brugernavn, Password)) 
+            if(BGI.Brugergodkendelse(Brugernavn, Password)) 
             {
                 System.out.println("Du er nu logged på med : " + Brugernavn + " og passwordet: " + Password);
                 this.PasswordForsøg = true;

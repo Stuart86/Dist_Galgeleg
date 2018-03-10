@@ -1,6 +1,5 @@
 package klient;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.Scanner;
@@ -9,14 +8,13 @@ import javax.xml.ws.Service;
 
 import server.GalgelegInterface;
 
-
 public class BenytGalgelegModServer 
 {
-	static ServerForbindelse TS = new ServerForbindelse();
+	static ServerForbindelse aktivServerForbindelse = new ServerForbindelse();
 	
 	public static void main(String[] args) throws RemoteException, Exception 
 	{
-		TS.ServerTilslut1();
+		aktivServerForbindelse.ServerTilslutGalgeLogik();
 		BegyndSpillet();
 	}
 	public static void BegyndSpillet()
@@ -28,17 +26,17 @@ public class BenytGalgelegModServer
 		
 		if(SpilIgen == false)
 		{
-			HentOrdFraDR();
+			aktivServerForbindelse.GI.HentOrdFraDRTråd();
 		}
 		
 		while (GætForsøg)
         {
             System.out.println("Gæt et bogstav");
             mitGæt = Scanner.next();
-            System.out.println(TS.GI.gætBogstav(mitGæt));
-            System.out.println(TS.GI.logStatus());  
+            System.out.println(aktivServerForbindelse.GI.gætBogstav(mitGæt));
+            System.out.println(aktivServerForbindelse.GI.logStatus());  
             
-            if (TS.GI.erSpilletSlut())
+            if (aktivServerForbindelse.GI.erSpilletSlut())
             {
             	GætForsøg = false;
             	
@@ -50,7 +48,7 @@ public class BenytGalgelegModServer
             		if(Svar.equals("j"))
                 	{
                 		SpilIgen = true;
-                		TS.GI.nulstil();
+                		aktivServerForbindelse.GI.nulstil();
                 		BegyndSpillet();
                 	}
                 	else if(Svar.equals("n"))
@@ -71,14 +69,4 @@ public class BenytGalgelegModServer
 		
 	}
 	
-	public static void HentOrdFraDR() 
-	{
-	    new Thread(new Runnable() 
-	    {
-	        public void run()
-	        {
-	        	TS.GI.hentOrdFraDr();
-	        }
-	    }).start();
-	}
 }

@@ -2,6 +2,7 @@ package klient;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.Scanner;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
@@ -11,19 +12,13 @@ import server.GalgelegInterface;
 
 public class BenytGalgelegModServer 
 {
-	static GalgelegInterface GI;
-
-	public static void main(String[] args) throws MalformedURLException 
+	static ServerForbindelse TS = new ServerForbindelse();
+	
+	public static void main(String[] args) throws RemoteException, Exception 
 	{
-		boolean PasswordForsøg = false;
-		
-		ServerTilslut();
-		
-		PasswordForsøg = Login(PasswordForsøg);
-		
+		TS.ServerTilslut1();
 		BegyndSpillet();
 	}
-		
 	public static void BegyndSpillet()
 	{
 		String mitGæt, Svar;
@@ -33,17 +28,17 @@ public class BenytGalgelegModServer
 		
 		if(SpilIgen == false)
 		{
-			GI.hentOrdFraDr();
+			HentOrdFraDR();
 		}
 		
 		while (GætForsøg)
         {
             System.out.println("Gæt et bogstav");
             mitGæt = Scanner.next();
-            System.out.println(GI.gætBogstav(mitGæt));
-            System.out.println(GI.logStatus());  
+            System.out.println(TS.GI.gætBogstav(mitGæt));
+            System.out.println(TS.GI.logStatus());  
             
-            if (GI.erSpilletSlut())
+            if (TS.GI.erSpilletSlut())
             {
             	GætForsøg = false;
             	
@@ -55,19 +50,20 @@ public class BenytGalgelegModServer
             		if(Svar.equals("j"))
                 	{
                 		SpilIgen = true;
+                		TS.GI.nulstil();
                 		BegyndSpillet();
                 	}
                 	else if(Svar.equals("n"))
                 	{
                 		SpilIgen = false;
                 		System.out.println("Tak for spillet");
-                		
+                		break;
                 	}
                 	else
                 	{
                 		System.out.println("Forstår ikke inputtet, prøv venligst igen");
                 	}
-            		break;
+            		
             	}
             	
             }
@@ -75,36 +71,14 @@ public class BenytGalgelegModServer
 		
 	}
 	
-	public static void ServerTilslut() throws MalformedURLException
+	public static void HentOrdFraDR() 
 	{
-		URL url = new URL("http://ubuntu4.saluton.dk:9918/galgeleg?wsdl");
-		QName qname = new QName("http://server/", "GalgelogikService");
-		Service service = Service.create(url, qname);
-		GI = service.getPort(GalgelegInterface.class);
-		System.out.println("Der er forbundet til serveren");
-	}
-	
-	public static boolean Login(boolean PasswordForsøg)
-	{
-		String Brugernavn, Password;
-		Scanner Scanner = new Scanner(System.in);
-		
-		while(!PasswordForsøg) 
-		{
-            System.out.println("Indtast brugernavn:");
-            Brugernavn = Scanner.nextLine();
-            System.out.println("Indtast kodeord:");
-            Password = Scanner.nextLine();
-            
-            if(GI.Brugergodkendelse(Brugernavn, Password)) 
-            {
-                System.out.println("Du er nu logged på med : " + Brugernavn + " og passwordet: " + Password);
-                PasswordForsøg = true;
-            } else 
-            {
-                System.out.println("Forkert brugernavn eller password\nPrøv igen!");
-            }
-        }
-		return PasswordForsøg;
+	    new Thread(new Runnable() 
+	    {
+	        public void run()
+	        {
+	        	TS.GI.hentOrdFraDr();
+	        }
+	    }).start();
 	}
 }

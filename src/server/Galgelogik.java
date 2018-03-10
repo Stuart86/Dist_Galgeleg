@@ -13,8 +13,7 @@ import java.util.Random;
 import javax.jws.WebService;
 
 import brugerautorisation.transport.rmi.Brugeradminklient;
-import brugerautorisationold.Brugeradmin;
-import brugerautorisationold.BrugeradminImplService;
+
 
 
 @WebService(endpointInterface = "server.GalgelegInterface")
@@ -221,21 +220,5 @@ public class Galgelogik {
     System.out.println("muligeOrd = " + muligeOrd);
     nulstil();
   }
-	public boolean Brugergodkendelse(String Brugernavn, String Password) throws RemoteException, Exception
-	{
-		
-		Brugeradminklient BAK = new Brugeradminklient();
-		
-		try 
-		{
-			BAK.RMIforbindelse().hentBruger(Brugernavn, Password);
-	        return true;
-	    } 
-		catch (Exception e) 
-		{
-	    	System.out.println("fejl");
-	        return false;
-	    }
-		
-	}
+
 }

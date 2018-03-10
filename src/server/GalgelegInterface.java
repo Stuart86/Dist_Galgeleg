@@ -20,5 +20,4 @@ public interface GalgelegInterface
 	@WebMethod String logStatus();
 	@WebMethod String hentUrl(String url);
 	@WebMethod void hentOrdFraDr();
-	@WebMethod boolean Brugergodkendelse(String Brugernavn, String Password);
 }

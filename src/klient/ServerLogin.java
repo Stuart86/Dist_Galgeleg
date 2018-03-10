@@ -1,0 +1,33 @@
+package klient;
+
+import java.rmi.RemoteException;
+import java.util.Scanner;
+import server.BrugerGodkendelseInterface;
+
+public class ServerLogin 
+{
+	boolean PasswordForsøg = false;
+	
+	public void Login(BrugerGodkendelseInterface bGI) throws RemoteException, Exception
+	{
+		String Brugernavn, Password;
+		Scanner Scanner = new Scanner(System.in);
+		
+		while(!this.PasswordForsøg) 
+		{
+            System.out.println("Indtast brugernavn:");
+            Brugernavn = Scanner.nextLine();
+            System.out.println("Indtast kodeord:");
+            Password = Scanner.nextLine();
+            
+            if(bGI.Brugergodkendelse(Brugernavn, Password)) 
+            {
+                System.out.println("Du er nu logged på med : " + Brugernavn + " og passwordet: " + Password);
+                this.PasswordForsøg = true;
+            } else 
+            {
+                System.out.println("Forkert brugernavn eller password\nPrøv igen!");
+            }
+        }
+	}
+}

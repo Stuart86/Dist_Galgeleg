@@ -1,12 +1,7 @@
 package klient;
 
-import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.Scanner;
-import javax.xml.namespace.QName;
-import javax.xml.ws.Service;
-
-import server.GalgelegInterface;
 
 public class BenytGalgelegModServer 
 {
@@ -55,6 +50,7 @@ public class BenytGalgelegModServer
                 	{
                 		SpilIgen = false;
                 		System.out.println("Tak for spillet");
+                		Scanner.close();
                 		break;
                 	}
                 	else

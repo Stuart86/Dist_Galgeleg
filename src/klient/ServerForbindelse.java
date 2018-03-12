@@ -1,12 +1,9 @@
 package klient;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.rmi.RemoteException;
-
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
-
 import server.BrugerGodkendelseInterface;
 import server.GalgelegInterface;
 

@@ -24,8 +24,7 @@ public class ServerLogin
             {
                 System.out.println("Du er nu logged på med : " + Brugernavn + " og passwordet: " + Password);
                 this.PasswordForsøg = true;
-                Scanner.close();
-                
+//                Scanner.close();
             } else 
             {
                 System.out.println("Forkert brugernavn eller password\nPrøv igen!");

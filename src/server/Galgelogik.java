@@ -102,7 +102,7 @@ public class Galgelogik {
     }
   }
 
-  public String gætBogstav(String bogstav) {
+  public String gÃ¦tBogstav(String bogstav) {
 	
 	klientOutput.clear();
 	  

@@ -1,4 +1,4 @@
-package klient;
+package Klient;
 
 import java.rmi.RemoteException;
 import java.util.Scanner;
@@ -9,31 +9,34 @@ public class BenytGalgelegModServer
 	
 	public static void main(String[] args) throws RemoteException, Exception 
 	{
+
 		aktivServerForbindelse.ServerTilslutGalgeLogik();
 		BegyndSpillet();
 	}
 	public static void BegyndSpillet()
 	{
-		String mitGæt, Svar;
-		boolean GætForsøg = true;
+		String mitGÃ¦t, Svar;
+		boolean GÃ¦tForsÃ¸g = true;
 		boolean SpilIgen = false;
 		Scanner Scanner = new Scanner(System.in);
 		
 		if(SpilIgen == false)
 		{
-			aktivServerForbindelse.GI.HentOrdFraDRTråd();
+			aktivServerForbindelse.GI.HentOrdFraDRTrï¿½d();
 		}
 		
-		while (GætForsøg)
+
+		while (Gï¿½tForsï¿½g)
         {
-            System.out.println("Gæt et bogstav");
-            mitGæt = Scanner.next();
-            System.out.println(aktivServerForbindelse.GI.gætBogstav(mitGæt));
+            System.out.println("Gï¿½t et bogstav");
+            mitGï¿½t = Scanner.next();
+            System.out.println(aktivServerForbindelse.GI.gï¿½tBogstav(mitGï¿½t));
             System.out.println(aktivServerForbindelse.GI.logStatus());  
             
             if (aktivServerForbindelse.GI.erSpilletSlut())
             {
-            	GætForsøg = false;
+
+            	Gï¿½tForsï¿½g = false;
             	
             	while(true)
             	{
@@ -55,7 +58,7 @@ public class BenytGalgelegModServer
                 	}
                 	else
                 	{
-                		System.out.println("Forstår ikke inputtet, prøv venligst igen");
+                		System.out.println("Forstï¿½r ikke inputtet, prï¿½v venligst igen");
                 	}
             		
             	}
@@ -65,4 +68,3 @@ public class BenytGalgelegModServer
 		
 	}
 	
-}

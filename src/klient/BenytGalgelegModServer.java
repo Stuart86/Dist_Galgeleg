@@ -1,4 +1,4 @@
-package klient;
+package Klient;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -15,34 +15,34 @@ public class BenytGalgelegModServer
 
 	public static void main(String[] args) throws MalformedURLException 
 	{
-		boolean PasswordForsøg = false;
+		boolean PasswordForsÃ¸g = false;
 		
 		ServerTilslut();
 		
-		PasswordForsøg = Login(PasswordForsøg);
+		PasswordForsÃ¸g = Login(PasswordForsÃ¸g);
 		
 		BegyndSpillet();
 	}
 		
 	public static void BegyndSpillet()
 	{
-		String mitGæt, Svar;
-		boolean GætForsøg = true;
+		String mitGÃ¦t, Svar;
+		boolean GÃ¦tForsÃ¸g = true;
 		boolean SpilIgen = false;
 		Scanner Scanner = new Scanner(System.in);
 		
 		
 		GI.hentOrdFraDr();
-		while (GætForsøg)
+		while (GÃ¦tForsÃ¸g)
         {
-            System.out.println("Gæt et bogstav");
-            mitGæt = Scanner.next();
-            System.out.println(GI.gætBogstav(mitGæt));
+            System.out.println("Gï¿½t et bogstav");
+            mitGÃ¦t = Scanner.next();
+            System.out.println(GI.gÃ¦tBogstav(mitGÃ¦t));
             System.out.println(GI.logStatus());  
             
             if (GI.erSpilletSlut())
             {
-            	GætForsøg = false;
+            	GÃ¦tForsÃ¸g = false;
             	System.out.println("Vil du spille igen?\nSvar J/N");
             	
             }
@@ -59,12 +59,12 @@ public class BenytGalgelegModServer
 		System.out.println("Der er forbundet til serveren");
 	}
 	
-	public static boolean Login(boolean PasswordForsøg)
+	public static boolean Login(boolean PasswordForsÃ¸g)
 	{
 		String Brugernavn, Password;
 		Scanner Scanner = new Scanner(System.in);
 		
-		while(!PasswordForsøg) 
+		while(!PasswordForsÃ¸g)
 		{
             System.out.println("Indtast brugernavn:");
             Brugernavn = Scanner.nextLine();
@@ -73,13 +73,13 @@ public class BenytGalgelegModServer
             
             if(GI.Brugergodkendelse(Brugernavn, Password)) 
             {
-                System.out.println("Du er nu logged på med : " + Brugernavn + " og passwordet: " + Password);
-                PasswordForsøg = true;
+                System.out.println("Du er nu logged pÃ¥ med : " + Brugernavn + " og passwordet: " + Password);
+                PasswordForsÃ¸g = true;
             } else 
             {
-                System.out.println("Forkert brugernavn eller password\nPrøv igen!");
+                System.out.println("Forkert brugernavn eller password\nPrÃ¸v igen!");
             }
         }
-		return PasswordForsøg;
+		return PasswordForsÃ¸g;
 	}
 }

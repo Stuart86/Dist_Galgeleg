@@ -4,14 +4,34 @@
 
 </style>
 <head>
-<meta charset="ISO-8859-1">
-<title>Galgeleg gruppe 15</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" charset="ISO-8859-1"/>
+
+    <title>Galgeleg gruppe 15</title>
 </head>
 <body>
-<h1>Velkommen til Galgeleg!</h1>
-<p>Gæt et bogstav:</p>
-<input type="text"></input>
-<input type="submit" value="Bekræft">
+<h1></h1>
+<p>GÃ¦t et bogstav:</p>
 
+
+<input type="text"></input>
+<input type="submit" value="BekrÃ¦ft" onclick="funktion1()">
+
+<img src="/Dist_Galgeleg/GRAFIK/galge.png" id="galge" style="width:128px;height:128px; visibility: visible;">
+<img src="/Dist_Galgeleg/GRAFIK/forkert1.png" id="forkert1" style="width:128px;height:128px; visibility: hidden;">
+<img src="/Dist_Galgeleg/GRAFIK/forkert2.png" id="forkert2" style="width:128px;height:128px; visibility: hidden;">
+<img src="/Dist_Galgeleg/GRAFIK/forkert3.png" id="forkert3" style="width:128px;height:128px; visibility: hidden;">
+<img src="/Dist_Galgeleg/GRAFIK/forkert4.png" id="forkert4" style="width:128px;height:128px; visibility: hidden;">
+<img src="/Dist_Galgeleg/GRAFIK/forkert5.png" id="forkert5" style="width:128px;height:128px; visibility: hidden;">
+<img src="/Dist_Galgeleg/GRAFIK/forkert6.png" id="forkert6" style="width:128px;height:128px; visibility: hidden;">
+
+
+<script>
+    function funktion1() {
+        document.getElementById('galge').style.visibility = 'hidden';
+        document.getElementById('forkert1').style.visibility = 'visible';
+
+
+    }
+</script>
 </body>
 </html>

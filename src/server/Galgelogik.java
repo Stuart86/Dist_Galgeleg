@@ -102,13 +102,13 @@ public class Galgelogik {
     }
   }
 
-  public String gÃ¦tBogstav(String bogstav) {
+  public String gætBogstav(String bogstav) {
 	
 	klientOutput.clear();
 	  
     if (bogstav.length() != 1) return klientOutput.toString();
-    System.out.println("Der gÃ¦ttes pÃ¥ bogstavet: " + bogstav);
-    klientOutput.add("Der gÃ¦ttes pÃ¥ bogstavet: " + bogstav);
+    System.out.println("Der gættes på bogstavet: " + bogstav);
+    klientOutput.add("Der gættes på bogstavet: " + bogstav);
     if (brugteBogstaver.contains(bogstav)) return klientOutput.toString();
     if (spilletErVundet || spilletErTabt) return klientOutput.toString();
 

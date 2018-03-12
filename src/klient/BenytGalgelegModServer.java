@@ -1,4 +1,4 @@
-package Klient;
+package klient;
 
 import java.rmi.RemoteException;
 import java.util.Scanner;
@@ -15,28 +15,28 @@ public class BenytGalgelegModServer
 	}
 	public static void BegyndSpillet()
 	{
-		String mitGÃ¦t, Svar;
-		boolean GÃ¦tForsÃ¸g = true;
+		String mitGæt, Svar;
+		boolean GætForsøg = true;
 		boolean SpilIgen = false;
 		Scanner Scanner = new Scanner(System.in);
 		
 		if(SpilIgen == false)
 		{
-			aktivServerForbindelse.GI.HentOrdFraDRTrï¿½d();
+			aktivServerForbindelse.GI.HentOrdFraDRTråd();
 		}
 		
 
-		while (Gï¿½tForsï¿½g)
+		while (GætForsøg)
         {
-            System.out.println("Gï¿½t et bogstav");
-            mitGï¿½t = Scanner.next();
-            System.out.println(aktivServerForbindelse.GI.gï¿½tBogstav(mitGï¿½t));
-            System.out.println(aktivServerForbindelse.GI.logStatus());  
+            System.out.println("Gæt et bogstav");
+            mitGæt = Scanner.next();
+            System.out.println(aktivServerForbindelse.GI.gætBogstav(mitGæt));
+            System.out.println(aktivServerForbindelse.GI.logStatus()); 
             
             if (aktivServerForbindelse.GI.erSpilletSlut())
             {
 
-            	Gï¿½tForsï¿½g = false;
+            	GætForsøg = false;
             	
             	while(true)
             	{
@@ -58,13 +58,13 @@ public class BenytGalgelegModServer
                 	}
                 	else
                 	{
-                		System.out.println("Forstï¿½r ikke inputtet, prï¿½v venligst igen");
+                		System.out.println("Forstår ikke inputtet, prøv venligst igen");
                 	}
             		
             	}
             	
             }
         }
-		
 	}
+}
 	

@@ -5,7 +5,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 @WebService
-public interface GalgelegInterface
+public interface GalgelogikInterface
 {
 	@WebMethod ArrayList<String> getBrugteBogstaver();
 	@WebMethod String getSynligtOrd();

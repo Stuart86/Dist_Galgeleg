@@ -6,7 +6,7 @@ import javax.jws.WebService;
 
 import brugerautorisation.transport.rmi.Brugeradminklient;
 
-@WebService(endpointInterface = "server.BrugerGodkendelseInterface")
+@WebService(endpointInterface = "server.BrugerGodkendelseRMIInterface")
 public class BrugerGodkendelseRMI 
 {
 	public boolean Brugergodkendelse(String Brugernavn, String Password) throws RemoteException, Exception

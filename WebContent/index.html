@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" charset="ISO-8859-1"/>
+
+		<title>Galgeled gruppe 15</title>
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js" ></script>
+	</head>
+	<body>
+		<h1>Velkommen til Galgeleg! V2</h1>
+
+		<p>Login for at spille:</p>
+		<form  method="get" name="myLoginForm" id="Login">
+			Username:<br>
+			<input type="text" name="username" >
+			<br>
+			Password:<br>
+			<input type="password" name="password" >
+			<br><br>
+			<input type="submit" value="Submit">
+		</form>
+
+	<div style='text-align: right;position: fixed;z-index:9999999;bottom: 0; width: 100%;cursor: pointer;line-height: 0;display:block !important;'><a title="Hosted on free web hosting 000webhost.com. Host your own website for FREE." target="_blank" href="https://www.000webhost.com/?utm_source=000webhostapp&amp;utm_campaign=000_logo&amp;utm_medium=website_galgeleggruppe15&amp;utm_content=footer_img"><img src="https://cdn.rawgit.com/000webhost/logo/e9bd13f7/footer-powered-by-000webhost-white2.png"  alt="www.000webhost.com"></a></div></body>
+
+	<script>
+		$(document).ready(function() 
+		{
+			$('#Login').submit(function(event) 
+			{
+			event.preventDefault();
+		
+			alert("Det virker 2!!")
+			
+			BrugerGodkendelse();
+			
+			return false;
+			});
+			
+		});	
+
+
+
+		function BrugerGodkendelse()
+		{
+			alert("Det virker 5!!")
+			$.ajax({
+				type: 'GET',
+				url: 'http://ubuntu4.saluton.dk:9930/Galgeleg/rest/LoginService',
+				dataType: 'json',
+				async: false,
+				converters: 
+				{
+					'text json': true
+				},
+				success: function(data)
+				{
+					alert(data);
+					console.log(data.response_html);
+					//$('div').html(newPageContent); 
+				},
+				error: function (jqXHR, textStatus, errorThrown)
+				{
+					alert("Could not receive the role: " + textStatus);
+				}
+			});
+		}
+	</script>
+</html>

@@ -5,18 +5,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 import javax.jws.WebService;
 
-import brugerautorisation.transport.rmi.Brugeradminklient;
 
 
-
-@WebService(endpointInterface = "server.GalgelegInterface")
+@WebService(endpointInterface = "server.GalgelogikInterface")
 public class Galgelogik {
   /** AHT afprøvning er muligeOrd synlig på pakkeniveau */
 	

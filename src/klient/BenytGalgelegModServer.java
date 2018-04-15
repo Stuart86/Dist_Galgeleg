@@ -9,7 +9,6 @@ public class BenytGalgelegModServer
 	
 	public static void main(String[] args) throws RemoteException, Exception 
 	{
-
 		aktivServerForbindelse.ServerTilslutGalgeLogik();
 		BegyndSpillet();
 	}

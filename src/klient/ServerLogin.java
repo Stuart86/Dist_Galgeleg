@@ -2,13 +2,13 @@ package klient;
 
 import java.rmi.RemoteException;
 import java.util.Scanner;
-import server.BrugerGodkendelseInterface;
+import server.BrugerGodkendelseRMIInterface;
 
 public class ServerLogin 
 {
 	boolean PasswordForsøg = false;
 	
-	public void Login(BrugerGodkendelseInterface BGI) throws RemoteException, Exception
+	public void Login(BrugerGodkendelseRMIInterface BGI) throws RemoteException, Exception
 	{
 		String Brugernavn, Password;
 		Scanner Scanner = new Scanner(System.in);
